@@ -24,9 +24,9 @@ void mvp (int i, int j, DTYPE real, DTYPE imag, DTYPE input_real[SIZE],
 		for(j=0; j<SIZE; j++){
 #pragma HLS unroll factor = 8
 #pragma HLS pipeline
-			real_sample[i] += (input_real[j]*cos_coefficients_table[(i*j)%SIZE]
+			real_sample[i] = (input_real[j]*cos_coefficients_table[(i*j)%SIZE]
 					- input_imag[j]*sin_coefficients_table[(i*j)%SIZE]) + real;
-			imag_sample[i] += (input_real[j]*sin_coefficients_table[(i*j)%SIZE]
+			imag_sample[i] = (input_real[j]*sin_coefficients_table[(i*j)%SIZE]
 					+ input_imag[j]*cos_coefficients_table[(i*j)%SIZE]) + imag;
 			split1 (&real, &imag, real_sample[i], imag_sample[i]);
 		}
